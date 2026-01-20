@@ -9,10 +9,10 @@ export default function Header() {
 
   const links = [
     { label: 'Home', path: '/' },
-    { label: 'Book Appointment', path: '/book' },
-    { label: 'Client Portal', path: '/client-portal' },
-    { label: 'Remote Notarization', path: '/ron' },
     { label: 'Services', path: '/services' },
+    { label: 'Remote Notary', path: '/ron' },
+    { label: 'Apostille', path: '/apostille' },
+    { label: 'Contact', path: '/contact' },
   ]
 
   return (
@@ -22,9 +22,14 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="w-10 h-10 bg-gradient-to-br from-proof to-blue-700 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">🔏</span>
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
             </div>
-            <span className="text-xl font-bold text-gray-900">BridgeNotary</span>
+            <div>
+              <span className="text-xl font-bold text-gray-900">Bridge Notary</span>
+              <div className="text-xs text-gray-500">Available 24/7</div>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
@@ -44,10 +49,13 @@ export default function Header() {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center gap-3">
+            <Link to="/client-portal" className="text-gray-600 hover:text-proof font-semibold transition-colors">
+              Log In
+            </Link>
             <Link to="/book" className="button-primary">
-              Schedule Now
+              Notarize
             </Link>
           </div>
 
