@@ -1,6 +1,10 @@
 /// <reference lib="webworker" />
 declare const self: ServiceWorkerGlobalScope;
 
+// Workbox manifest - will be injected by vite-plugin-pwa
+declare const self: any;
+self.__WB_MANIFEST = self.__WB_MANIFEST || [];
+
 // Cache configuration
 const CACHE_VERSION = 'v1';
 const RUNTIME_CACHE = `bridgenotary-runtime-${CACHE_VERSION}`;

@@ -9,6 +9,8 @@ import { generalImages, ronImages, apostilleImages, loanSigningImages } from '@/
 const HomePage = React.lazy(() => import('@/pages/home'))
 const RONPage = React.lazy(() => import('@/pages/ron'))
 const ApostillePage = featureFlags.enableApostille ? React.lazy(() => import('@/pages/apostille')) : null
+const BookingPage = React.lazy(() => import('@/pages/book'))
+const ClientPortalPage = React.lazy(() => import('@/pages/client-portal'))
 
 // 404 Page with random hero images
 const notFoundImages = [
@@ -51,6 +53,8 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/ron" element={<RONPage />} />
+              <Route path="/book" element={<BookingPage />} />
+              <Route path="/client-portal" element={<ClientPortalPage />} />
               {featureFlags.enableApostille && ApostillePage && (
                 <Route path="/apostille" element={<ApostillePage />} />
               )}
