@@ -9,9 +9,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      strategies: 'injectManifest',
-      srcDir: 'src',
-      filename: 'sw.ts',
+      strategies: 'generateSW',
       manifest: {
         name: 'Bridge Notary',
         short_name: 'Bridge Notary',

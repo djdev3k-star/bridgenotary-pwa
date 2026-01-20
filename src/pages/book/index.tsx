@@ -110,23 +110,28 @@ export default function BookingPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-12">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 md:py-32">
         <div className="max-w-2xl mx-auto px-4">
-          <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
-            <div className="text-6xl mb-4">✅</div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Booking Confirmed!</h1>
-            <p className="text-xl text-gray-600 mb-6">
+          <div className="bg-white/80 backdrop-blur rounded-2xl shadow-2xl p-8 md:p-12 text-center border border-white/20">
+            <div className="text-7xl mb-6 animate-fade-in">✅</div>
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">Booking Confirmed!</h1>
+            <p className="text-xl text-gray-600 mb-6 leading-relaxed max-w-lg mx-auto">
               Thank you for scheduling your notary appointment. We'll contact you shortly to confirm the details.
             </p>
             <p className="text-gray-600 mb-8">
-              A confirmation email has been sent to <strong>{formData.email}</strong>
+              A confirmation email has been sent to <strong className="text-proof">{formData.email}</strong>
             </p>
-            <button
-              onClick={() => setSuccess(false)}
-              className="button-primary"
-            >
-              Book Another Appointment
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => setSuccess(false)}
+                className="button-primary"
+              >
+                Book Another Appointment
+              </button>
+              <a href="/" className="button-outline">
+                Return Home
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -134,29 +139,35 @@ export default function BookingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 md:py-20">
       <div className="max-w-2xl mx-auto px-4">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Book Your Appointment</h1>
-          <p className="text-xl text-gray-600">Schedule your notary services with us</p>
+        {/* Header */}
+        <div className="mb-12 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">Book Your Appointment</h1>
+          <p className="text-xl text-gray-600 max-w-lg mx-auto">Schedule your notary services with us today</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className="bg-white/80 backdrop-blur rounded-2xl shadow-2xl p-8 md:p-12 border border-white/20">
           {errors.length > 0 && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <h3 className="font-bold text-red-800 mb-2">Please fix the following errors:</h3>
-              <ul className="list-disc list-inside text-red-700">
+            <div className="mb-8 p-4 bg-red-50/80 border-l-4 border-red-500 rounded-lg backdrop-blur">
+              <h3 className="font-bold text-red-900 mb-3 flex items-center gap-2">
+                <span>⚠️</span> Please fix the following errors:
+              </h3>
+              <ul className="space-y-1 text-red-700">
                 {errors.map((err, idx) => (
-                  <li key={idx}>{err.message}</li>
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1">•</span>
+                    <span>{err.message}</span>
+                  </li>
                 ))}
               </ul>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {/* Personal Info */}
             <div>
-              <h3 className="font-bold text-lg text-gray-900 mb-4">Personal Information</h3>
+              <h3 className="font-bold text-lg text-gray-900 mb-6 flex items-center gap-2">👤 Personal Information</h3>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
@@ -198,7 +209,7 @@ export default function BookingPage() {
 
             {/* Service Details */}
             <div>
-              <h3 className="font-bold text-lg text-gray-900 mb-4">Service Details</h3>
+              <h3 className="font-bold text-lg text-gray-900 mb-6 flex items-center gap-2">📋 Service Details</h3>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Service Type *</label>
@@ -230,7 +241,7 @@ export default function BookingPage() {
 
             {/* Appointment Details */}
             <div>
-              <h3 className="font-bold text-lg text-gray-900 mb-4">Appointment Details</h3>
+              <h3 className="font-bold text-lg text-gray-900 mb-6 flex items-center gap-2">📅 Appointment Details</h3>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -283,15 +294,15 @@ export default function BookingPage() {
             </div>
 
             {/* Consent */}
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-3 bg-blue-50/50 p-4 rounded-lg border border-blue-100">
               <input
                 type="checkbox"
                 name="termsAccepted"
                 checked={formData.termsAccepted}
                 onChange={handleChange}
-                className="mt-1"
+                className="mt-1 w-5 h-5 accent-proof rounded"
               />
-              <label className="text-sm text-gray-600">
+              <label className="text-sm text-gray-700 font-medium">
                 I agree to the terms and conditions and consent to being contacted about my appointment *
               </label>
             </div>
@@ -300,9 +311,9 @@ export default function BookingPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full button-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full button-primary disabled:opacity-50 disabled:cursor-not-allowed py-3 text-lg font-bold transition-all transform hover:scale-105 active:scale-95"
             >
-              {loading ? 'Booking...' : 'Book Appointment'}
+              {loading ? '⏳ Booking...' : '✓ Book Appointment'}
             </button>
           </form>
         </div>
