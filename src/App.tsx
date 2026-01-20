@@ -1,5 +1,5 @@
+import React, { Suspense, useMemo } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Suspense, React, useMemo } from 'react'
 import Layout from '@/components/layout'
 import { ErrorBoundary, LoadingSpinner } from '@/components/common'
 import { featureFlags } from '@/utils/featureFlags'
