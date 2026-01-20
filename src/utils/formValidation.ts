@@ -13,7 +13,6 @@ interface ValidationResult {
 }
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const PHONE_REGEX = /^\+?1?\d{10,14}$/
 
 export function validateEmail(email: string): boolean {
   return EMAIL_REGEX.test(email)

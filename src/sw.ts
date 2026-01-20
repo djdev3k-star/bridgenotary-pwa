@@ -1,8 +1,7 @@
 /// <reference lib="webworker" />
-declare const self: ServiceWorkerGlobalScope;
+declare const self: any;
 
 // Workbox manifest - will be injected by vite-plugin-pwa
-declare const self: any;
 self.__WB_MANIFEST = self.__WB_MANIFEST || [];
 
 // Cache configuration

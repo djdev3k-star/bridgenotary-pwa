@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { validateRequestForm, formatPhoneNumber } from '@/utils/formValidation'
+import { validateRequestForm } from '@/utils/formValidation'
 import { submitRequestForm } from '@/services/formSubmissionService'
 
 interface BookingFormData {
