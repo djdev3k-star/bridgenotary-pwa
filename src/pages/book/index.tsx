@@ -110,17 +110,22 @@ export default function BookingPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 md:py-32">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-20">
         <div className="max-w-2xl mx-auto px-4">
-          <div className="bg-white/80 backdrop-blur rounded-2xl shadow-2xl p-8 md:p-12 text-center border border-white/20">
-            <div className="text-7xl mb-6 animate-fade-in">✅</div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">Booking Confirmed!</h1>
-            <p className="text-xl text-gray-600 mb-6 leading-relaxed max-w-lg mx-auto">
+          <div className="bg-white/80 backdrop-blur rounded-2xl shadow-2xl p-12 border border-white/20 text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-6 flex items-center justify-center">
+              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Booking Confirmed</h1>
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto">
               Thank you for scheduling your notary appointment. We'll contact you shortly to confirm the details.
             </p>
-            <p className="text-gray-600 mb-8">
-              A confirmation email has been sent to <strong className="text-proof">{formData.email}</strong>
-            </p>
+            <div className="bg-blue-50/50 rounded-lg p-4 mb-8 border border-blue-100">
+              <p className="text-sm text-gray-600">Confirmation sent to</p>
+              <p className="text-lg font-semibold text-proof">{formData.email}</p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setSuccess(false)}
@@ -165,9 +170,9 @@ export default function BookingPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Personal Info */}
-            <div>
-              <h3 className="font-bold text-lg text-gray-900 mb-6 flex items-center gap-2">👤 Personal Information</h3>
+            {/* Personal Information Section */}
+            <div className="border-b pb-8">
+              <h2 className="text-xl font-bold text-gray-900 mb-6">Personal Information</h2>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
@@ -207,9 +212,9 @@ export default function BookingPage() {
               </div>
             </div>
 
-            {/* Service Details */}
-            <div>
-              <h3 className="font-bold text-lg text-gray-900 mb-6 flex items-center gap-2">📋 Service Details</h3>
+            {/* Service Details Section */}
+            <div className="border-b pb-8">
+              <h2 className="text-xl font-bold text-gray-900 mb-6">Service Details</h2>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Service Type *</label>
@@ -239,9 +244,9 @@ export default function BookingPage() {
               </div>
             </div>
 
-            {/* Appointment Details */}
-            <div>
-              <h3 className="font-bold text-lg text-gray-900 mb-6 flex items-center gap-2">📅 Appointment Details</h3>
+            {/* Appointment Details Section */}
+            <div className="border-b pb-8">
+              <h2 className="text-xl font-bold text-gray-900 mb-6">Appointment Details</h2>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -281,7 +286,7 @@ export default function BookingPage() {
             </div>
 
             {/* Additional Notes */}
-            <div>
+            <div className="border-b pb-8">
               <label className="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
               <textarea
                 name="notes"
@@ -293,28 +298,29 @@ export default function BookingPage() {
               />
             </div>
 
-            {/* Consent */}
-            <div className="flex items-start gap-3 bg-blue-50/50 p-4 rounded-lg border border-blue-100">
-              <input
-                type="checkbox"
-                name="termsAccepted"
-                checked={formData.termsAccepted}
-                onChange={handleChange}
-                className="mt-1 w-5 h-5 accent-proof rounded"
-              />
-              <label className="text-sm text-gray-700 font-medium">
-                I agree to the terms and conditions and consent to being contacted about my appointment *
-              </label>
-            </div>
+            {/* Consent & Submit */}
+            <div>
+              <div className="flex items-start gap-3 bg-blue-50/50 p-4 rounded-lg border border-blue-100 mb-8">
+                <input
+                  type="checkbox"
+                  name="termsAccepted"
+                  checked={formData.termsAccepted}
+                  onChange={handleChange}
+                  className="mt-1 w-5 h-5 accent-proof rounded"
+                />
+                <label className="text-sm text-gray-700 font-medium">
+                  I agree to the terms and conditions and consent to being contacted about my appointment *
+                </label>
+              </div>
 
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full button-primary disabled:opacity-50 disabled:cursor-not-allowed py-3 text-lg font-bold transition-all transform hover:scale-105 active:scale-95"
-            >
-              {loading ? '⏳ Booking...' : '✓ Book Appointment'}
-            </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full button-primary disabled:opacity-50 disabled:cursor-not-allowed py-3 text-lg font-bold transition-all transform hover:scale-105 active:scale-95"
+              >
+                {loading ? 'Booking...' : 'Book Appointment'}
+              </button>
+            </div>
           </form>
         </div>
       </div>

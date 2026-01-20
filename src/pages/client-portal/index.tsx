@@ -116,20 +116,22 @@ export default function ClientPortalPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 md:py-32 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-20 flex items-center justify-center">
         <div className="max-w-md w-full px-4">
-          <div className="bg-white/80 backdrop-blur rounded-2xl shadow-2xl p-8 md:p-10 border border-white/20">
+          <div className="bg-white/80 backdrop-blur rounded-2xl shadow-2xl p-10 border border-white/20">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-proof to-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-white text-3xl">🔐</span>
+              <div className="w-14 h-14 bg-proof/10 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <svg className="w-7 h-7 text-proof" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
               </div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Client Portal</h1>
-              <p className="text-gray-600">Sign in to manage your appointments</p>
+              <p className="text-gray-600 text-sm">Sign in to manage your appointments</p>
             </div>
 
             {loginError && (
-              <div className="mb-6 p-4 bg-red-50/80 border-l-4 border-red-500 rounded-lg text-red-700 text-sm backdrop-blur">
-                ⚠️ {loginError}
+              <div className="mb-6 p-4 bg-red-50/80 border border-red-200 rounded-lg text-red-700 text-sm backdrop-blur">
+                {loginError}
               </div>
             )}
 
@@ -161,9 +163,11 @@ export default function ClientPortalPage() {
               </button>
             </form>
 
-            <p className="text-xs text-gray-500 text-center mt-6 p-3 bg-blue-50/50 rounded-lg border border-blue-100">
-              💡 Demo: Use any email and password (min 6 chars) to test
-            </p>
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <p className="text-xs text-gray-500 text-center">
+                Demo: Use any email and password (min 6 chars) to test
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -176,7 +180,7 @@ export default function ClientPortalPage() {
         {/* Header */}
         <div className="flex justify-between items-start mb-12">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Welcome, {profile.name}! 👋</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Welcome, {profile.name}</h1>
             <p className="text-lg text-gray-600">Manage your notary appointments and documents</p>
           </div>
           <button onClick={handleLogout} className="button-secondary hover:bg-gray-300 transition-all">
@@ -187,16 +191,16 @@ export default function ClientPortalPage() {
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="bg-white/80 backdrop-blur rounded-xl shadow-lg p-6 border border-white/20 hover:shadow-xl transition-shadow">
-            <div className="text-5xl font-bold text-proof mb-2">{profile.totalAppointments}</div>
-            <div className="text-gray-600 font-medium">Total Appointments</div>
+            <div className="text-sm text-gray-500 font-medium mb-2">Total Appointments</div>
+            <div className="text-4xl font-bold text-proof">{profile.totalAppointments}</div>
           </div>
           <div className="bg-white/80 backdrop-blur rounded-xl shadow-lg p-6 border border-white/20 hover:shadow-xl transition-shadow">
-            <div className="text-5xl font-bold text-green-600 mb-2">{profile.completedAppointments}</div>
-            <div className="text-gray-600 font-medium">Completed</div>
+            <div className="text-sm text-gray-500 font-medium mb-2">Completed</div>
+            <div className="text-4xl font-bold text-green-600">{profile.completedAppointments}</div>
           </div>
           <div className="bg-white/80 backdrop-blur rounded-xl shadow-lg p-6 border border-white/20 hover:shadow-xl transition-shadow">
-            <div className="text-2xl font-bold text-proof mb-2">Member Since</div>
-            <div className="text-gray-600 font-medium">{profile.joinDate}</div>
+            <div className="text-sm text-gray-500 font-medium mb-2">Member Since</div>
+            <div className="text-lg font-bold text-proof">{profile.joinDate}</div>
           </div>
         </div>
 
@@ -207,15 +211,12 @@ export default function ClientPortalPage() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
-                className={`flex-1 py-4 px-6 font-semibold transition-all border-b-2 ${
+                className={`flex-1 py-4 px-6 font-semibold transition-all border-b-2 text-sm md:text-base ${
                   activeTab === tab
                     ? 'text-proof border-proof'
                     : 'text-gray-600 border-transparent hover:text-proof'
                 }`}
               >
-                {tab === 'appointments' && '📅 '}
-                {tab === 'profile' && '👤 '}
-                {tab === 'documents' && '📄 '}
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
